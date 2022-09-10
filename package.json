@@ -8,10 +8,19 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "ssh-command",
-      "title": "ssh-command",
+      "name": "addConfig",
+      "title": "Add Config",
       "description": "ssh connection helper in vscode",
       "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+        "name": "sshConfigPath",
+        "type": "textfield",
+        "required": true,
+        "title": "ssh config path",
+        "description": "Enter the ssh path set in vscode"
     }
   ],
   "dependencies": {
