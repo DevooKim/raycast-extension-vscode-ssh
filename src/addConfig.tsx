@@ -46,7 +46,7 @@ export default function addConfig() {
 
         const data = makeConfig(config);
         appendFileSync(sshConfigPath, data);
-        
+
         await closeMainWindow({ clearRootSearch: true });
         await popToRoot({ clearSearchBar: true });
     };
