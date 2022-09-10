@@ -1,4 +1,11 @@
-import { Action, ActionPanel, Form, getPreferenceValues } from "@raycast/api";
+import {
+    Action,
+    ActionPanel,
+    closeMainWindow,
+    Form,
+    getPreferenceValues,
+    popToRoot,
+} from "@raycast/api";
 import { useState } from "react";
 import { appendFileSync } from "node:fs";
 import Cache from "./utils/cache";
@@ -33,7 +40,7 @@ export default function addConfig() {
     const [, setHost] = useState<string | undefined>();
     const [, setRoot] = useState<string | undefined>();
     const [mode, setMode] = useState("command");
-    
+
     const onSubmit = async (values: Values) => {
         const { sshConfigPath } = getPreferenceValues<PreferenceValues>();
 
@@ -51,11 +58,13 @@ export default function addConfig() {
         };
 
         const cache = new Cache();
-        console.log(cache.get('test123'))
         cache.set(_host, JSON.stringify(config));
 
         const data = makeConfig(config);
         appendFileSync(sshConfigPath, data);
+
+        await closeMainWindow({ clearRootSearch: true });
+        await popToRoot({ clearSearchBar: true });
     };
 
     return (
