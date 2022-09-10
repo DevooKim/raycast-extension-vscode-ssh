@@ -5,3 +5,8 @@
 
 # misc
 .DS_Store
+
+
+config.json
+
+.vscode
